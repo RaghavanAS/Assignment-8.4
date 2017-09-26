@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JS to master Jumbotron and Preloader</title>
+  <meta charset="utf-8">
+  <!-- linking the bootstrap libraries to support -->
+    <!-- linking the Jquery libraries --> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- applying styles to button and pre loader -->
+<style>
+.loader {
+margin-left: 500px;
+margin-top: 150px;
+  border: 10px solid #f3f3f3;
+  border-radius: 60%;
+  border-top: 10px solid #3498db;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+.loader{
+display: none;}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+button{
+background-color: #4CAF50;
+color: white;
+cursor: pointer;
+width: 50%;
+padding: 14px 20px;
+margin:6px 0px 0px 360px;
+border: none;
+}
+
+</style>
+<!--jquery code to hide, show and change properties to elements-->
+<script>
+$(document).ready(function(){
+// disabling the show button as the jumbotron is already being displayed
+$('#show').attr("disabled","disabled");
+// on clicking hide
+$('#hide').click(function(){
+  //enabling the show button
+$('#show').removeAttr("disabled");
+//hiding the jumbotron
+$('.jumbotron').hide();
+});
+
+//on clicking show
+$('#show').click(function(){
+//disabling the show button
+$('#show').attr("disabled","disabled");
+//displaying the preloader
+$('.loader').show();
+//setting up a timer for a timeout effect
+myvar =setTimeout(function(){
+$('.loader').hide();
+$('.jumbotron').show();
+},2000)});
+// on clickin change property
+$('#chgColor').click(function(){
+  //applying random function to generate color between red, blue and green
+var back = ["red","blue","green"];
+var rand = back[Math.floor(Math.random() * back.length)];
+// adding properties to jumbotron elements
+$('.jumbotron > h1').css("color",rand);
+$('.jumbotron > p').css("color",rand);
+$('.jumbotron > p').css("font-size","40px");
+});
+
+});
+</script>
+</head>
+<body>
+  <!-- buttons -->
+<button id="hide"> Hide </button>
+<button id="show"> Show </button>
+<button id="chgColor"> Change Properties </button>
+<!-- main container -->
+<div class="container">
+<div class="loader"></div>
+<!-- div containing the jumbotron -->
+  <div class="jumbotron">
+    <h1>Assignment 8.4</h1>      
+    <p>This is an example of Jumbotron. it does not get displayed when button "Hide" is clicked and gets displayed when button "show" is displayed.
+When button "change properties" is clicked, the color changes dynamically to either Red, Green or Blue Colors
+</p>
+</div>
+  </div>
+</body>
+<!-- end of HTML -->
+</html>
